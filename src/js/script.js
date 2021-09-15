@@ -64,8 +64,6 @@
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
       thisProduct.processOrder();
-
-      console.log('new Product:', thisProduct);
     }
 
     renderInMenu(){
@@ -105,21 +103,11 @@
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
-      //const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-
-      /* START: add event listener to clickable trigger on event click */
-      
-      // wyszukane wczesniej, zbędne 
-      //clickableTrigger.addEventListener('click', function(event) {
       thisProduct.accordionTrigger.addEventListener('click', function(event){
 
         /* prevent default action for event */
         event.preventDefault();
 
-        /* find active product (product that has active class) */
-        // const activeProduct = document.querySelector(select.menuProduct.activeProduct);
-
-        /* if there is active product and its not thisProduct.element, remove class active from it */
         /* find all active products */
         const activeProducts = document.querySelectorAll('.product.active');
 
@@ -162,7 +150,6 @@
 
       // covert form to object structure e.g. {sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -172,14 +159,12 @@
 
         //determine param value, e.g. paramId = 'toppings', param = {label: 'toppings', type:'checkboxes'...}
         const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
 
         // for every option in this category 
         for(let optionId in param.options){
 
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
 
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
 
