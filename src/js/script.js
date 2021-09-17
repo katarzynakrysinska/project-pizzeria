@@ -113,13 +113,9 @@
         event.preventDefault();
 
         /* find all active products */
-        const activeProducts = document.querySelectorAll('.product.active');
-
-        for(let activeProduct of activeProducts){
-          if(activeProduct !== thisProduct.element && activeProduct !== null){
-            /* remove class active for the active product */
-            activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-          }
+        const activeProduct = document.querySelector('.product.active');
+        if(activeProduct && activeProduct !== thisProduct.element){
+          activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
         }
         
         /* toggle active class on thisProduct.element */
