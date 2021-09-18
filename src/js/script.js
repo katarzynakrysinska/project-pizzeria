@@ -137,6 +137,7 @@
       thisProduct.dom.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
 
       thisProduct.dom.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+    
     }
 
     initAccordion(){
@@ -395,6 +396,7 @@
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = element.querySelector(select.cart.productList);
     }
     
     initActions(){
@@ -409,6 +411,15 @@
     add(menuProduct){
       const thisCart = this;
 
+      /* generate HTML based on template */
+      const generatedHTML = templates.cartProduct(menuProduct);
+      
+      /* create element using utils.createElementFromHTML */
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+
+      /* add element */
+      thisCart.dom.productList.appendChild(generatedDOM);
+      
       console.log('adding product', menuProduct);
     }
   }
