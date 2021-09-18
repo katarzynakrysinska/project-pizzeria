@@ -177,6 +177,7 @@
       thisProduct.dom.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
 
@@ -245,6 +246,23 @@
         event.preventDefault();
         thisProduct.processOrder();
       });
+    }
+
+    addToCart(){
+      const thisProduct = this;
+
+      app.cart.add(thisProduct);
+    }
+
+    prepareCartProduct(){
+      const thisProduct = this;
+
+      const productSummary = {};
+
+      productSummary.id = thisProduct.id;
+      productSummary.name = thisProduct.data.name;
+      productSummary.amount = thisProduct.amountWidget.value;
+
     }
   }
   
@@ -317,7 +335,7 @@
       thisCart.products = [];
 
       thisCart.getElements(element);
-      //2
+      
       thisCart.initActions();
 
       console.log('new Cart', thisCart);
@@ -330,24 +348,24 @@
 
       thisCart.dom.wrapper = element;
 
-      //1
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     }
-    //2
+    
     initActions(){
-      //3
+      
       const thisCart = this;
 
       thisCart.dom.toggleTrigger.addEventListener('click', function(){
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
     }
+
+    add(menuProduct){
+      const thisCart = this;
+
+      console.log('adding product', menuProduct);
+    }
   }
-
-
-
-
-
 
   const app = {
     initMenu: function(){
