@@ -233,6 +233,7 @@
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
 
+      thisProduct.priceSingle = price;
       //update calculated price in the HTML
       thisProduct.dom.priceElem.innerHTML = price;
 
@@ -262,6 +263,8 @@
       productSummary.id = thisProduct.id;
       productSummary.name = thisProduct.data.name;
       productSummary.amount = thisProduct.amountWidget.value;
+      productSummary.priceSingle = thisProduct.priceSingle;
+      productSummary.price = thisProduct.priceSingle *= thisProduct.amountWidget.value;
 
     }
   }
