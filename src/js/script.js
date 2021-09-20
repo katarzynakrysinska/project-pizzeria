@@ -231,14 +231,12 @@
         }
       }
 
-
       thisProduct.priceSingle = price;
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
 
       //update calculated price in the HTML
       thisProduct.dom.priceElem.innerHTML = price;
-
     }
 
     initAmountWidget(){
@@ -317,9 +315,6 @@
     constructor(element){
       const thisWidget = this;
 
-      console.log('AmountWidget', thisWidget);
-      console.log('constructor argument:', element);
-
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
@@ -384,8 +379,6 @@
       thisCart.getElements(element);
       
       thisCart.initActions();
-
-      console.log('new Cart', thisCart);
     }
 
     getElements(element){
@@ -441,8 +434,7 @@
       thisCartProduct.params = menuProduct.params;
 
       thisCartProduct.getElements(element);
-
-      console.log('thisCartProduct', thisCartProduct);
+      thisCartProduct.initAmountWidget();
     }
 
     getElements(element){
@@ -454,9 +446,21 @@
 
       thisCartProduct.dom.amountWidget = element.querySelector(select.cartProduct.amountWidget);
       thisCartProduct.dom.price = element.querySelector(select.cartProduct.price);
-      thisCartProduct.dom.edit =element.querySelector(select.cartProduct.edit);
+      thisCartProduct.dom.edit = element.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = element.querySelector(select.cartProduct.remove);
-      
+    }
+
+    initAmountWidget(){
+      const thisCartProduct = this;
+
+      thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+      thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
+        
+        thisCartProduct.amount = thisCartProduct.amountWidget.value;
+        thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
+        thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+
+      });
     }
 
 
@@ -465,7 +469,6 @@
   const app = {
     initMenu: function(){
       const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
 
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
@@ -488,11 +491,6 @@
 
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();
