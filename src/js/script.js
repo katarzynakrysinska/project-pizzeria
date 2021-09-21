@@ -413,6 +413,10 @@
       thisCart.dom.productList.addEventListener('updated', function(){
         thisCart.update();
       });
+
+      thisCart.dom.productList.addEventListener('remove', function(event){
+        thisCart.remove(event.detail.cartProduct);
+      });
     }
 
     add(menuProduct){
@@ -434,7 +438,17 @@
       console.log('thisCart.products', thisCart.products);
 
       thisCart.update();
-      
+    }
+
+    remove(menuProduct){
+      const thisCart = this;
+
+      const elementsToRemove = thisCart.products.indexOf(menuProduct);
+      thisCart.products.splice(elementsToRemove, 1);
+
+      menuProduct.dom.wrapper.remove();
+
+      thisCart.update();
     }
 
     update(){
