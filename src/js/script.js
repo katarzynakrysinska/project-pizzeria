@@ -77,6 +77,13 @@
       defaultDeliveryFee: 20,
     },
     // CODE ADDED END
+
+    //get data from API
+    db: {
+      url: '//localhost:3131',
+      products: 'products',
+      orders: 'orders',
+    },
   };
   
   const templates = {
