@@ -1,4 +1,5 @@
-import {select, classNames, templates, settings} from './settings.js';
+import {settings, select, classNames, templates} from '../settings.js';
+import utils from '../utils.js';
 import CartProduct from './CartProduct.js';
 
 class Cart{
@@ -19,19 +20,19 @@ class Cart{
 
     thisCart.dom.wrapper = element;
 
-    thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+    thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = element.querySelector(select.cart.productList);
         
     // four new ones
-    thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
-    thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
-    thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
-    thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
+    thisCart.dom.deliveryFee = element.querySelector(select.cart.deliveryFee);
+    thisCart.dom.subtotalPrice = element.querySelector(select.cart.subtotalPrice);
+    thisCart.dom.totalPrice = element.querySelectorAll(select.cart.totalPrice);
+    thisCart.dom.totalNumber = element.querySelector(select.cart.totalNumber);
 
     // ćwiczenie z Api
-    thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
-    thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
-    thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+    thisCart.dom.form = element.querySelector(select.cart.form);
+    thisCart.dom.address = element.querySelector(select.cart.address);
+    thisCart.dom.phone = element.querySelector(select.cart.phone);
   }
 
   initActions(){
@@ -53,7 +54,6 @@ class Cart{
     thisCart.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
       thisCart.sendOrder();
-
     });
   }
 
@@ -149,8 +149,6 @@ class Cart{
     };
 
     fetch(url, options);
-
-
   }
 }
 

@@ -1,4 +1,4 @@
-import {settings, select} from './settings.js';
+import {settings, select} from '../settings.js';
 
 class AmountWidget{
   constructor(element){
@@ -32,7 +32,6 @@ class AmountWidget{
 
     thisWidget.announce();
     thisWidget.input.value = thisWidget.value;
-
   }
 
   initActions(){

@@ -1,6 +1,6 @@
-import {select, classNames, templates} from './settings.js';
-import utils from '.utils.js';
-import AmountWidget from './components/AmountWidget.js';
+import {select, classNames, templates} from '../settings.js';
+import utils from '../utils.js';
+import AmountWidget from './AmountWidget.js';
 
 
 
@@ -17,7 +17,6 @@ class Product{
     thisProduct.initOrderForm();
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
-
   }
 
   renderInMenu(){
@@ -55,7 +54,6 @@ class Product{
     thisProduct.dom.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
 
     thisProduct.dom.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
-
   }
 
   initAccordion(){
@@ -170,7 +168,7 @@ class Product{
   addToCart(){
     const thisProduct = this;
 
-    //thisProduct.name = thisProduct.data.name;
+    thisProduct.name = thisProduct.data.name;
     //thisProduct.amount = thisProduct.amountWidget.value;
 
     //app.cart.add(thisProduct.prepareCartProduct());
@@ -178,12 +176,11 @@ class Product{
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,
       detail: {
-        product: thisProduct,
+        product: thisProduct.prepareCartProduct(),
       }
     });
 
     thisProduct.element.dispatchEvent(event);
-
   }
 
   prepareCartProduct(){
@@ -199,7 +196,6 @@ class Product{
     productSummary.params = thisProduct.prepareCartProductsParams();
 
     return productSummary;
-
   }
 
   prepareCartProductsParams(){
@@ -234,10 +230,8 @@ class Product{
         // option is selected!
           params[paramId].options[optionId] = option.label;
         }
-
       }
     }
-
     return params;
   }
 }
