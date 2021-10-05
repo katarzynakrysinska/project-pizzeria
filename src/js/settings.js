@@ -79,10 +79,16 @@ export const classNames = {
     wrapperActive: 'active',
   },
   // CODE ADDED END
-  booking: {  //NEW 10.4
-    loading: 'loading',
-    tableBooked: 'booked',
-    tableSelected: '.selected',
+  booking: {
+    peopleAmount: '.people-amount',
+    hoursAmount: '.hours-amount',
+    tables: '.floor-plan .table',
+    floorPlan: '.floor-plan',
+    table: '.table',
+    bookButton: '.order-confirmation [type="submit"]',
+    phoneNumber: '.order-confirmation [type="tel"]',
+    address: '.order-confirmation [type="text"]',
+    starters: '.checkbox [type="checkbox"]'
   },
   nav: {  //NEW 10.4
     active: 'active',
