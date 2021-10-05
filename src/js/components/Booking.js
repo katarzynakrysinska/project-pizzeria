@@ -9,6 +9,9 @@ class Booking {
   constructor(element){
 
     const thisBooking = this;
+
+    thisBooking.tableSelected = [];
+
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
@@ -180,6 +183,8 @@ class Booking {
     thisBooking.dom.hourPicker = element.querySelector(select.widgets.hourPicker.wrapper);
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+
+    thisBooking.dom.divTables = element.querySelector(select.booking.divTables);
   }
 
   initWidgets(){
@@ -192,10 +197,39 @@ class Booking {
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
     });
+
+    thisBooking.dom.floorPlan && thisBooking.dom.floorPlan.addEventListener('click', function (event) {
+      thisBooking.initTables(event);
+    });
+  }
+
+  initTables (event) {
+    event.preventDefault();
+
+    const thisBooking = this;
+    const element = event.target;
+
+    const isTable = element.classList.contains(classNames.booking.table);
+    const isBooked = element.classList.contains(classNames.booking.tableBooked);
+    const isSelected = element.classList.contains(classNames.booking.tableSelected);
+
+    if (isTable && !isBooked) {
+      thisBooking.removeTableSelection();
+      if (!isSelected) {
+        element.classList.toggle(classNames.booking.tableSelected);
+        thisBooking.tableSelected = parseInt(element.getAttribute('data-table'));
+      }
+    }
+  }
+
+  removeTableSelection () {
+    const thisBooking = this;
+
+    for (const table of thisBooking.dom.tables) {
+      table.classList.remove(classNames.booking.tableSelected);
+    }
+    thisBooking.tableSelected = [];
   }
 }
 
 export default Booking;
-
-
-
