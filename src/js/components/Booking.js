@@ -184,7 +184,7 @@ class Booking {
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
 
-    thisBooking.dom.divTables = element.querySelector(select.booking.divTables);
+    thisBooking.dom.floorPlan = element.querySelector(select.booking.floorPlan);
   }
 
   initWidgets(){
