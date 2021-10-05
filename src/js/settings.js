@@ -2,13 +2,15 @@ export const select = {
   templateOf: {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product', // CODE ADDED
-    bookingWidget: '#template-booking-widget', //NEW 10.4
+    bookingWidget: '#template-booking-widget',
+    homeWidget: '#template-home-widget',
   },
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
-    pages: '#pages',  //NEW 10.4
-    booking: '.booking-wrapper',  //NEW 10.4
+    pages: '#pages',
+    booking: '.booking-wrapper',
+    home: '.home-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -25,21 +27,35 @@ export const select = {
   },
   widgets: {
     amount: {
-      input: 'input.amount', // CODE CHANGED
+      input: 'input.amount', 
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
-    datePicker: { //NEW 10.4
+    datePicker: {
       wrapper: '.date-picker',
-      input: `input[name="date"]`,
+      input: 'input[name="date"]',
     },
-    hourPicker: { //NEW 10.4
+    hourPicker: {
       wrapper: '.hour-picker',
       input: 'input[type="range"]',
       output: '.output',
     },
   },
-  // CODE ADDED START
+  booking: {
+    peopleAmount: '.people-amount',
+    hoursAmount: '.hours-amount',
+    tables: '.floor-plan .table',
+    form: '.booking-form',
+    starters: '[name="starter"]',
+  },
+  home: {
+    order: '.order-online',
+    book: '.book-table',
+    options: '.options a',
+  },
+  nav: {
+    links: '.main-nav a',
+  },
   cart: {
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
@@ -58,15 +74,7 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
-  // CODE ADDED END
-  booking: { //NEW 10.4
-    peopleAmount: '.people-amount',
-    hoursAmount: '.hours-amount',
-    tables: '.floor-plan .table',
-  },
-  nav: { //NEW 10.4
-    links: '.main-nav a',
-  },
+    
 };
   
 export const classNames = {
@@ -74,26 +82,19 @@ export const classNames = {
     wrapperActive: 'active',
     imageVisible: 'active',
   },
-  // CODE ADDED START
+    
   cart: {
     wrapperActive: 'active',
   },
-  // CODE ADDED END
   booking: {
-    peopleAmount: '.people-amount',
-    hoursAmount: '.hours-amount',
-    tables: '.floor-plan .table',
-    floorPlan: '.floor-plan',
-    table: '.table',
-    bookButton: '.order-confirmation [type="submit"]',
-    phoneNumber: '.order-confirmation [type="tel"]',
-    address: '.order-confirmation [type="text"]',
-    starters: '.checkbox [type="checkbox"]'
+    loading: 'loading',
+    tableBooked: 'booked',
+    tableSelected: '.selected',
   },
-  nav: {  //NEW 10.4
+  nav: {
     active: 'active',
   },
-  pages: {  //NEW 10.4
+  pages: {
     active: 'active',
   }
 };
@@ -101,43 +102,39 @@ export const classNames = {
 export const settings = {
   amountWidget: {
     defaultValue: 1,
-    defaultMin: 0,
-    defaultMax: 10,
-  }, // CODE CHANGED
-  // CODE ADDED START
+    defaultMin: 1,
+    defaultMax: 9,
+  }, 
   cart: {
     defaultDeliveryFee: 20,
   },
-  // CODE ADDED END
-
-  //get data from API
-  db: {  //NEW 10.4
-    url: '//localhost:3131',
-    products: 'products',
-    orders: 'orders',   // w pliku było 'order'
-    booking: 'booking',
-    event: 'event',
-    dateStartParamKey: 'date_gte',
-    dateEndParamKey: 'date_lte',
-    notRepeatParam: 'repeat=false',
-    repeatParam: 'repeat_ne=false',
-  },
-  hours: {  //NEW 10.4
+  hours: {
     open: 12,
     close: 24,
   },
-  datePicker: {  //NEW 10.4
+  datePicker: {
     maxDaysInFuture: 14,
   },
-  booking: {  //NEW 10.4
+  booking: {
     tableIdAttribute: 'data-table',
+  },    
+  db: {
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
+    products: 'product',
+    orders: 'order',
+    booking: 'booking',
+    event: 'event',
+    dateStartParamKey: 'date-gte',
+    dateEndParamKey: 'date-lte',
+    notReapeatParam: 'repeat=false',
+    repeatParam: 'repeat_ne=false',
   },
 };
   
 export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
-  // CODE ADDED START
+    
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
-  // CODE ADDED END
-  bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),//NEW 10.4
+
+  bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
 };
