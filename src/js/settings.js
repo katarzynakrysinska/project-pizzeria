@@ -49,6 +49,7 @@ export const select = {
     starters: '[name="starter"]',
     floorPlan: '.floor-plan',
     table: '.table',
+    
   },
   home: {
     order: '.order-online',

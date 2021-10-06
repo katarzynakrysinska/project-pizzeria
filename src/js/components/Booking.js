@@ -15,6 +15,7 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
+    
   }
 
   getData() {
@@ -167,6 +168,12 @@ class Booking {
     thisBooking.dom.datePicker = element.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.tables = element.querySelectorAll(select.booking.tables);
     thisBooking.dom.floorPlan = element.querySelector(select.booking.floorPlan);
+    thisBooking.dom.form = document.querySelector(select.booking.form);
+
+    thisBooking.dom.address = document.querySelector(select.cart.address);
+    thisBooking.dom.phone = document.querySelector(select.cart.phone);
+    thisBooking.dom.starters = document.querySelectorAll(select.booking.starters);
+
     
   }
   
@@ -216,6 +223,52 @@ class Booking {
       thisBooking.updateDOM();
       thisBooking.removeSelected();
     });
+
+    thisBooking.dom.form.addEventListener('submit', function(event){
+      event.preventDefault();
+      thisBooking.sendBooking();
+    });
+  }
+
+  sendBooking(){
+    const thisBooking = this;
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const ultimateBooking = {
+      date: thisBooking.datePicker.value,
+      hour: thisBooking.hourPicker.value,
+      table: thisBooking.selectedTable,
+      duration: parseInt(thisBooking.hoursAmount.value),
+      ppl: parseInt(thisBooking.peopleAmount.value),
+      starters: [],
+      phone: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value,
+    };
+    console.log('ultimateBooking:', ultimateBooking);
+
+    for(let starter of thisBooking.dom.starters) {
+      if(starter.checked === true) {
+        ultimateBooking.starters.push(starter.value);
+      }
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(ultimateBooking),
+    };
+
+    fetch(url, options)
+      .then(function (response) {
+        return response.json();
+      }).then(function (parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+      });
+
+    console.log(thisBooking.booked);
   }
 
 }
