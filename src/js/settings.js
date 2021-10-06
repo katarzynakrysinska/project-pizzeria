@@ -47,6 +47,8 @@ export const select = {
     tables: '.floor-plan .table',
     form: '.booking-form',
     starters: '[name="starter"]',
+    floorPlan: '.floor-plan',
+    table: '.table',
   },
   home: {
     order: '.order-online',
@@ -90,6 +92,7 @@ export const classNames = {
     loading: 'loading',
     tableBooked: 'booked',
     tableSelected: '.selected',
+    table: '.table',
   },
   nav: {
     active: 'active',
@@ -120,8 +123,8 @@ export const settings = {
   },    
   db: {
     url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
-    products: 'product',
-    orders: 'order',
+    products: 'products',
+    orders: 'orders',
     booking: 'booking',
     event: 'event',
     dateStartParamKey: 'date-gte',
