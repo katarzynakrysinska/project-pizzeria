@@ -39,6 +39,7 @@ class Home {
 
     thisHome.dom.bookTable.addEventListener('click', function(){
       app.activatePage('booking');
+  
     });
 
     thisHome.dom.orderOnline.addEventListener('click', function(){

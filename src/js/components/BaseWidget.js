@@ -55,8 +55,6 @@ class BaseWidget{
 
     thisWidget.dom.wrapper.dispatchEvent(event);
   }
-
-  
 }
 
 export default BaseWidget;

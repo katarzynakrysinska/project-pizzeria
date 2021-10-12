@@ -87,27 +87,27 @@
   margin: 75px 25px;
   display: flex;
 
-.opinion-image {
-  overflow: hidden;
-  z-index: 1;
-  flex: 0 0 50%;
-}
-  
-.opinion-image img{
-  width: 250px;
-  height: 220px;
-  object-fit: cover;
-}
-
-.opinion-description{
-  padding: 0 0 10px 10px;
-  text-align: left;
-  font-family: $font-text;
-  flex: 0 0 50%;
-    
-.opinion-author {
-    font-style: italic;
+  .opinion-image {
+    overflow: hidden;
+    z-index: 1;
+    flex: 0 0 50%;
   }
+  
+  .opinion-image img{
+    width: 250px;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .opinion-description{
+    padding: 0 0 10px 10px;
+    text-align: left;
+    font-family: $font-text;
+    flex: 0 0 50%;
+    
+    .opinion-author {
+      font-style: italic;
+    }
   }
 }
 
@@ -134,21 +134,20 @@
 }
 
 .gallery-item img {
-    width: 200px;
-    height: 180px;
+  width: 200px;
+  height: 180px;
 }
    
 .gallery-item:hover {
-
-   img {
+  img {
     opacity: 0.4;
     transition: $transition;
-   }
+  }
 
-   .gallery-icons {
-    opacity:1;
+  .gallery-icons {
+    opacity: 1;
     transition: $transition;
-   }
+  }
 }
 
 .gallery-icons {
@@ -175,10 +174,3 @@ footer {
 footer a {
   color: $color-danger;
 }
-
-
-
-
-
-
-
